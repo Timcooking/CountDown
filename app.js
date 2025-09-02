@@ -3,7 +3,7 @@
 
 const STORAGE_KEY = 'countdown.tasks.v1';
 const FOCUS_KEY = 'countdown.focusTaskId';
-const BG_KEY = 'countdown.bg.v1'; // { mode: 'default' | 'flow-dark' | 'custom' | 'preset', dataUrl?: string, preset?: string }
+const BG_KEY = 'countdown.bg.v1'; // { mode: 'video' | 'default' | 'flow-dark' | 'custom' | 'preset', dataUrl?: string, preset?: string, video?: string }
 
 // 工具
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -389,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 背景：存取与应用
 function loadBg() {
-  try { return JSON.parse(localStorage.getItem(BG_KEY) || 'null') || { mode: 'default' }; } catch { return { mode: 'default' }; }
+  try { return JSON.parse(localStorage.getItem(BG_KEY) || 'null') || { mode: 'video', video: 'video1' }; } catch { return { mode: 'video', video: 'video1' }; }
 }
 function saveBg(cfg) { localStorage.setItem(BG_KEY, JSON.stringify(cfg)); }
 function applyBackground(cfg) {
