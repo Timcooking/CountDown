@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>倒计时 | Countdown</title>
+    <meta name="description" content="一个简洁的本地倒计时任务清单，支持添加/编辑/删除与本地保存。" />
+    <!-- 字体：重要内容使用衬线，其他使用无衬线 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&family=Playfair+Display:wght@500;700&family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <!-- 左侧：全屏主倒计时 -->
+      <section class="hero-pane">
+        <header class="app-header hero">
+          <div class="hero-bg" aria-hidden="true"></div>
+          <div class="hero-img" aria-hidden="true"></div>
+          <video class="hero-video" aria-hidden="true" playsinline muted loop autoplay></video>
+          <div class="hero-glass" aria-hidden="true"></div>
+          <div class="main-countdown hero-card">
+            <div class="main-title-row">
+              <h1 id="mainTitle" class="serif">距离 最近任务 还有</h1>
+            </div>
+            <div id="mainTime" class="time-display serif">--:--:--</div>
+            <div id="mainDue" class="subtle-text"></div>
+          </div>
+        </header>
+      </section>
+
+      <!-- 右侧：时间轴与任务管理 -->
+      <aside class="timeline-pane">
+        <main class="container">
+          <section>
+            <div class="section-header sticky">
+              <h2 class="section-title serif">时间轴</h2>
+              <div style="display:flex; gap:8px;">
+                <button id="toggleBgFormBtn" class="ghost-btn" aria-expanded="false" aria-controls="bgForm">背景</button>
+                <button id="toggleAddFormBtn" class="primary-btn" aria-expanded="false" aria-controls="taskForm">添加任务</button>
+              </div>
+            </div>
+            <form id="bgForm" class="task-form collapsible" autocomplete="off">
+              <label class="field field-wide">
+                <span>背景模式</span>
+                <div class="seg">
+                  <label><input type="radio" name="bgMode" value="default" checked> 流光</label>
+                  <label style="margin-left:12px;"><input type="radio" name="bgMode" value="flow-dark"> 深邃</label>
+                  <label style="margin-left:12px;"><input type="radio" name="bgMode" value="preset"> 生机</label>
+                  <label style="margin-left:12px;"><input type="radio" name="bgMode" value="custom"> 自定义</label>
+                </div>
+              </label>
+              
+              <label class="field field-wide" id="bgFileField">
+                <span>选择图片文件</span>
+                <input id="bgFile" type="file" accept="image/*" />
+              </label>
+              
+            </form>
+            <form id="taskForm" class="task-form collapsible" autocomplete="off">
+              <label class="field">
+                <span>标题</span>
+                <input id="titleInput" type="text" placeholder="例如：提交项目报告" required />
+              </label>
+              <label class="field">
+                <span>截止时间</span>
+                <input id="dueInput" type="datetime-local" required />
+              </label>
+              <label class="field field-wide">
+                <span>任务详情（可选）</span>
+                <textarea id="detailInput" rows="2" placeholder="补充说明、链接或要点……"></textarea>
+              </label>
+              <div class="form-actions">
+                <button type="submit" class="primary-btn">保存</button>
+                <button type="button" id="cancelAddBtn" class="ghost-btn">取消</button>
+              </div>
+            </form>
+            <div id="emptyState" class="empty" hidden>暂无任务，点击“添加任务”开始。</div>
+            <ul id="taskList" class="timeline" aria-live="polite"></ul>
+          </section>
+        </main>
+      </aside>
+    </div>
+
+    
+
+    <script src="./app.js" defer></script>
+  </body>
+  </html>
