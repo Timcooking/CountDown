@@ -236,7 +236,7 @@ input, textarea, button, select { font-family: inherit; }
 .hero.hero-dark .time-display { color: #fff; }
 .hero.hero-dark #mainDue { color: rgba(255,255,255,0.76); }
 @media (max-width: 720px) {
-  .hero { padding: 12px; height: 60vh; }
+  .hero { padding: 12px; height: 100vh; min-height: 100svh; }
   .hero .main-title-row h1 { font-size: 1.4rem; }
   .hero .time-display { font-size: 3.4rem; }
 }
